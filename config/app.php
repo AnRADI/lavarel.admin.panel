@@ -67,7 +67,7 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    'timezone' => 'Europe/Kiev',
 
 
     /*
@@ -175,7 +175,13 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Providers\TelescopeServiceProvider::class,
 
+
+        /*
+         * My Service Providers...
+         */
+        App\Providers\MyTimeServiceProvider::class,
     ],
 
     /*
@@ -226,6 +232,11 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        /*
+         * My Facades...
+         */
+        'MyTime' => App\Facades\MyTime::class,
 
     ],
 

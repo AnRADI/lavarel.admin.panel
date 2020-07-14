@@ -1,0 +1,266 @@
+/*================== RESET ==================*/
+body {
+    line-height: 1.5;
+}
+
+ul {
+    list-style: none;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    font-size: 100%;
+    line-height: 1.2;
+}
+
+body, input, label, ul, p, h1, h2, h3, h4, h5, h6, figure {
+    margin: 0;
+}
+
+button, input, option, ul {
+    padding: 0;
+}
+
+a, a:hover {
+    text-decoration: none;
+}
+
+a, span, label {
+    display: inline-block;
+}
+
+button, input[type='button'] {
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+button, input, select, textarea {
+    outline: none;
+    background: white;
+    font: inherit;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 6px 12px;
+    border: 1px solid #dee2e6;
+}
+
+:active, :focus {
+    outline: none;
+}
+
+::-moz-focus-inner {
+    border: 0;
+}
+
+button, img {
+    border: 0;
+}
+
+textarea {
+    resize: vertical;
+}
+
+select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -ms-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+select::-ms-expand {
+    display: none;
+}
+
+figure {
+    position: relative;
+}
+
+figure img {
+    width: 100%;
+}
+
+i:before {
+    display: inline-block;
+}
+
+figcaption {
+    position: absolute;
+}
+
+th {
+    text-align: left;
+}
+
+th, td {
+    padding: 0;
+}
+
+input, textarea,
+span, div,
+section, button,
+select,
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+input[type='search']::-ms-clear {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+input[type='search']::-ms-reveal {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+input[type='search']::-webkit-search-decoration,
+input[type='search']::-webkit-search-cancel-button,
+input[type='search']::-webkit-search-results-button,
+input[type='search']::-webkit-search-results-decoration {
+    display: none;
+}
+
+img {
+    display: block;
+}
+
+.swiper-wrapper {
+    box-sizing: border-box;
+}
+
+@-moz-document url-prefix() {
+    svg[class] {
+        will-change: transform;
+    }
+    body {
+        line-height: 1.45;
+    }
+    select {
+        text-indent: -2px;
+    }
+}
+
+/*================== PAGE ==================*/
+.decor-1 {
+    border: 1px solid #dee2e6;
+    background: #fff;
+    border-radius: 4px;
+}
+
+input, select, textarea {
+    border-radius: 4px;
+}
+
+/*================== ALL CATEGORIES ==================*/
+.all-categories {
+    padding-top: 25px;
+}
+
+.all-categories__links {
+    display: flex;
+    margin-left: 10px;
+}
+
+.all-categories__links a {
+    color: white;
+}
+
+.all-categories__table {
+    margin-top: 8px;
+    padding: 16px 16px 32px 16px;
+}
+
+.all-categories__pagination {
+    margin-top: 25px;
+    padding: 16px 0 32px 16px;
+}
+
+/*================== EDIT CATEGORY ==================*/
+
+.edit-category__left {
+    padding: 32px 16px;
+}
+
+.edit-category__left ul {
+    display: flex;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.edit-category__left li {
+    margin-bottom: -1px;
+}
+
+.edit-category__left a {
+    line-height: 40px;
+    padding: 0 16px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border: 1px solid transparent;
+}
+
+.edit-category__left .active {
+    color: #495057;
+    background-color: #f8fafc;
+    border-color: #dee2e6 #dee2e6 #fff;
+}
+
+.edit-category__left > div {
+    margin-top: 16px;
+}
+
+.edit-category__left div div {
+    position: relative;
+}
+
+.edit-category__left label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.edit-category__left select {
+    position: relative;
+    height: 40px;
+}
+
+.edit-category__left i {
+    position: absolute;
+    top: 50%;
+    right: 2%;
+    color: #a5a9ac;
+    transform: translateY(-50%);
+}
+
+.edit-category__save {
+    padding: 16px;
+}
+
+.edit-category__save input {
+    width: auto;
+}
+
+.edit-category__info {
+    margin: 20px 0;
+    padding: 16px 16px 32px;
+}
+
+.edit-category__status {
+    padding: 0 16px 32px 16px;
+}
+
+.edit-category__status > div {
+    margin-top: 16px;
+}
+
+.edit-category__status label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.edit-category__status input:disabled {
+    background-color: #e9ecef;
+}
