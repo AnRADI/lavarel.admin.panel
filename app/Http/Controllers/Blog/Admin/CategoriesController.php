@@ -27,7 +27,15 @@ class CategoriesController extends BaseController
      */
     public function create()
     {
-        dd(__METHOD__);
+        $item = new BlogCategories();
+        $categoriesList = BlogCategories::all();
+		$selectList = [];
+
+		foreach($categoriesList as $categoriesItem) {
+			$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
+		}
+
+        return view('blog.admin.categories.edit', compact('item', 'selectList', 'categoriesList'));
     }
 
     /**

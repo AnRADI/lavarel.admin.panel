@@ -5,24 +5,30 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// Blog
+// ====== blog =======
 
 $blogRoutes = [
     'namespace' => 'Blog',
     'prefix' => 'blog',
 ];
 
+
+// posts
+
 Route::group($blogRoutes, function(){
     Route::resource('posts', 'PostsController')->names('blog.posts');
 });
 
 
-// Blog Admin
+// ====== blog admin ======
 
 $blogAdminRoutes = [
     'namespace' => 'Blog\Admin',
     'prefix' => 'blog/admin',
 ];
+
+
+// categories
 
 Route::group($blogAdminRoutes, function(){
 
