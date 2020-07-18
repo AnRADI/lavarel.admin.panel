@@ -46,7 +46,7 @@
 								<div>
 									{{ Form::label('parent_id', 'Родитель') }}
 									<div>
-										{{ Form::select('parent_id', $selectList, null, ['placeholder' => 'Выберите категорию']) }}
+										{{ Form::select('parent_id', $selectList, $item->id, ['placeholder' => 'Выберите категорию']) }}
 										<i class="fas fa-chevron-down"></i>
 									</div>
 								</div>

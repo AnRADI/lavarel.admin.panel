@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Blog\Admin;
 
-use Illuminate\Http\Request;
 use App\Models\BlogCategories;
 use App\Http\Requests\BlogCategoriesUpdateRequest;
+use App\Http\Requests\BlogCategoriesCreateRequest;
+use Illuminate\Support\Str;
 
 class CategoriesController extends BaseController
 {
@@ -44,9 +45,28 @@ class CategoriesController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogCategoriesCreateRequest $request)
     {
-        dd(__METHOD__);
+		$data = $request->all();
+
+        if(empty($data['slug'])) {
+			$data['slug'] = Str::slug($data['title']);
+		}
+
+        $item = BlogCategories::create($data);
+
+
+        if($item) {
+        	return redirect()
+				->route('blog.admin.categories.index')
+				->with(['success' => 'Успешно сохранено']);
+		} else {
+        	return back()
+				->withErrors(['msg' => 'Ошибка сохранения'])
+				->withInput();
+		}
+
+
     }
 
     /**
@@ -93,9 +113,7 @@ class CategoriesController extends BaseController
 
         $data = $request->all();
 
-        $result = $item
-			->fill($data)
-			->save();
+        $result = $item->update($data);
 
 
         if($result) {
