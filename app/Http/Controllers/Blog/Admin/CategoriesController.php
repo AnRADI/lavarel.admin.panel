@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Blog\Admin;
 use App\Models\BlogCategories;
 use App\Http\Requests\BlogCategoriesUpdateRequest;
 use App\Http\Requests\BlogCategoriesCreateRequest;
+use App\Repositories\BlogCategoriesRepository;
 use Illuminate\Support\Str;
 
 class CategoriesController extends BaseController
@@ -86,10 +87,10 @@ class CategoriesController extends BaseController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id, BlogCategoriesRepository $blogCategoriesRepository)
     {
-        $item = BlogCategories::find($id);
-        $categoriesList = BlogCategories::all();
+        $item = $blogCategoriesRepository->getEdit($id);
+        $categoriesList = $blogCategoriesRepository->getForComboBox();
         $selectList = [];
 
         foreach($categoriesList as $categoriesItem) {
