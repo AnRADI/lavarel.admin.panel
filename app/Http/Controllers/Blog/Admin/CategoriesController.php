@@ -10,14 +10,23 @@ use Illuminate\Support\Str;
 
 class CategoriesController extends BaseController
 {
-    /**
+	private $blogCategoriesRepository;
+
+	public function __construct() {
+
+		parent::__construct();
+
+		$this->blogCategoriesRepository = app(BlogCategoriesRepository::class);
+	}
+
+	/**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $paginator = BlogCategories::paginate(5);
+        $paginator = $this->blogCategoriesRepository->getAllWidthPaginate(5);
 
         return view('blog.admin.categories.index', compact('paginator'));
     }
@@ -30,14 +39,17 @@ class CategoriesController extends BaseController
     public function create()
     {
         $item = new BlogCategories();
-        $categoriesList = BlogCategories::all();
+        $categoriesList = $this
+			->blogCategoriesRepository
+			->getForComboBox();
+
 		$selectList = [];
 
 		foreach($categoriesList as $categoriesItem) {
 			$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
 		}
 
-        return view('blog.admin.categories.edit', compact('item', 'selectList', 'categoriesList'));
+        return view('blog.admin.categories.edit', compact('item', 'selectList'));
     }
 
     /**
@@ -55,6 +67,7 @@ class CategoriesController extends BaseController
 		}
 
         $item = BlogCategories::create($data);
+
 
 
         if($item) {
@@ -97,7 +110,7 @@ class CategoriesController extends BaseController
         	$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
 		}
 
-        return view('blog.admin.categories.edit', compact('item', 'categoriesList', 'selectList'));
+        return view('blog.admin.categories.edit', compact('item','selectList'));
     }
 
     /**

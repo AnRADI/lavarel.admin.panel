@@ -31,6 +31,7 @@
             </div>
 
             @if($paginator->total() > $paginator->count())
+
                 <nav class="all-categories__pagination decor-1" aria-label="Page navigation example">
                     {{ $paginator }}
                 </nav>
