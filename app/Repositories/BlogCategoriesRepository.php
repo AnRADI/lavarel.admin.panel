@@ -28,7 +28,6 @@ class BlogCategoriesRepository extends CoreRepository {
 
 	public function getAllWidthPaginate($perPage = null) {
 
-
 		$columns = ['id', 'title', 'parent_id'];
 
 		$result = $this

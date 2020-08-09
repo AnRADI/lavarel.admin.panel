@@ -8,6 +8,7 @@ use App\Http\Requests\BlogCategoriesCreateRequest;
 use App\Repositories\BlogCategoriesRepository;
 use Illuminate\Support\Str;
 
+
 class CategoriesController extends BaseController
 {
 	private $blogCategoriesRepository;

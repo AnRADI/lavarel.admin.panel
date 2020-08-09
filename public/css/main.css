@@ -175,6 +175,10 @@ input, select, textarea {
     padding: 16px 16px 32px 16px;
 }
 
+.all-categories__table th {
+    font-family: sans-serif;
+}
+
 .all-categories__pagination {
     margin-top: 25px;
     padding: 16px 0 32px 16px;

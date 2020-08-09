@@ -20,20 +20,26 @@ Route::group($blogRoutes, function(){
 });
 
 
-// ====== blog admin ======
+// ====== BLOG ADMIN ======
 
-$blogAdminRoutes = [
+$routes = [
     'namespace' => 'Blog\Admin',
     'prefix' => 'blog/admin',
 ];
 
-
-// categories
-
-Route::group($blogAdminRoutes, function(){
-
+Route::group($routes, function()
+{
+	// categories
     $methods = ['index', 'edit', 'update', 'create', 'store',];
 
-    Route::resource('categories', 'CategoriesController')->only($methods)
+    Route::resource('categories', 'CategoriesController')
+		->only($methods)
         ->names('blog.admin.categories');
+
+    // posts
+	$methods = ['index', 'edit', 'update', 'create', 'store', 'destroy',];
+
+	Route::resource('posts', 'PostController')
+		->only($methods)
+		->names('blog.admin.posts');
 });
