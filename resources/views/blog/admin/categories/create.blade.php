@@ -3,7 +3,7 @@
 @section('content')
 	<section class="edit-category">
 
-		{{ Form::open(['route' => ['blog.admin.categories.update', $item->id], 'method' => 'patch']) }}
+		{{ Form::open(['route' => ['blog.admin.categories.store'], 'method' => 'post']) }}
 			<div class="container">
 				<div class="row">
 					@error('title')
@@ -34,22 +34,22 @@
 							</ul>
 							<div>
 								{{ Form::label('title', 'Заголовок') }}
-								{{ Form::text('title', $item->title) }}
+								{{ Form::text('title') }}
 							</div>
 							<div>
 								{{ Form::label('slug', 'Идентификатор') }}
-								{{ Form::text('slug', $item->slug) }}
+								{{ Form::text('slug') }}
 							</div>
 							<div>
 								{{ Form::label('parent_id', 'Родитель') }}
 								<div>
-									{{ Form::select('parent_id', $selectList, $item->id, ['placeholder' => 'Выберите категорию']) }}
+									{{ Form::select('parent_id', $selectList, null, ['placeholder' => 'Выберите категорию']) }}
 									<i class="fas fa-chevron-down"></i>
 								</div>
 							</div>
 							<div>
 								{{ Form::label('description', 'Описание') }}
-								{{ Form::textarea('description', old('description', $item->description), ['rows' => '3']) }}
+								{{ Form::textarea('description', '', ['rows' => '3']) }}
 							</div>
 						</div>
 					</div>
@@ -58,25 +58,6 @@
 						<div class="edit-category__save decor-1">
 							{{ Form::submit('Сохранить', ['class' => 'btn btn-primary']) }}
 						</div>
-
-						<ul class="edit-category__info decor-1">
-							<li>ID: {{ $item->id }} </li>
-						</ul>
-						<div class="edit-category__status decor-1">
-							<div>
-								{{ Form::label(null, 'Создано') }}
-								{{ Form::text(null, $item->created_at, ['disabled']) }}
-							</div>
-							<div>
-								{{ Form::label(null, 'Изменено') }}
-								{{ Form::text(null, $item->updated_at, ['disabled']) }}
-							</div>
-							<div>
-								{{ Form::label(null, 'Удалено') }}
-								{{ Form::text(null, $item->deleted_at, ['disabled']) }}
-							</div>
-						</div>
-
 					</div>
 				</div>
 			</div>

@@ -29,7 +29,7 @@ a, span, label {
     display: inline-block;
 }
 
-button, input[type='button'] {
+button, input[type="button"] {
     cursor: pointer;
     padding: 6px 12px;
 }
@@ -44,6 +44,10 @@ input, select, textarea {
     width: 100%;
     padding: 6px 12px;
     border: 1px solid #dee2e6;
+}
+
+input[type="checkbox"], input[type="radio"] {
+    width: auto;
 }
 
 :active, :focus {
@@ -190,29 +194,6 @@ input, select, textarea {
     padding: 32px 16px;
 }
 
-.edit-category__left ul {
-    display: flex;
-    border-bottom: 1px solid #dee2e6;
-}
-
-.edit-category__left li {
-    margin-bottom: -1px;
-}
-
-.edit-category__left a {
-    line-height: 40px;
-    padding: 0 16px;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    border: 1px solid transparent;
-}
-
-.edit-category__left .active {
-    color: #495057;
-    background-color: #f8fafc;
-    border-color: #dee2e6 #dee2e6 #fff;
-}
-
 .edit-category__left > div {
     margin-top: 16px;
 }
@@ -222,13 +203,17 @@ input, select, textarea {
 }
 
 .edit-category__left label {
-    display: block;
     margin-bottom: 8px;
 }
 
 .edit-category__left select {
     position: relative;
     height: 40px;
+}
+
+.edit-category__left input[type="checkbox"] {
+    height: 13px;
+    margin-right: 4px;
 }
 
 .edit-category__left i {

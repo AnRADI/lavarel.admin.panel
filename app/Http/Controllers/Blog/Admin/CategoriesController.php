@@ -27,7 +27,9 @@ class CategoriesController extends BaseController
      */
     public function index()
     {
-        $paginator = $this->blogCategoriesRepository->getAllWidthPaginate(5);
+        $paginator = $this
+			->blogCategoriesRepository
+			->getAllWidthPaginate(5);
 
         return view('blog.admin.categories.index', compact('paginator'));
     }
@@ -39,18 +41,18 @@ class CategoriesController extends BaseController
      */
     public function create()
     {
-        $item = new BlogCategories();
         $categoriesList = $this
 			->blogCategoriesRepository
 			->getForComboBox();
 
 		$selectList = [];
 
+
 		foreach($categoriesList as $categoriesItem) {
 			$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
 		}
 
-        return view('blog.admin.categories.edit', compact('item', 'selectList'));
+        return view('blog.admin.categories.create', compact('selectList'));
     }
 
     /**

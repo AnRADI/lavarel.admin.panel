@@ -4,18 +4,20 @@ namespace App\Http\Controllers\Blog\Admin;
 
 use Illuminate\Http\Request;
 use App\Repositories\BlogPostRepository;
-
+use App\Repositories\BlogCategoriesRepository;
 
 class PostController extends BaseController
 {
 
 	private $blogPostRepository;
+	private $blogCategoriesRepository;
 
 	public function __construct() {
 
 		parent::__construct();
 
 		$this->blogPostRepository = app(BlogPostRepository::class);
+		$this->blogCategoriesRepository = app(BlogCategoriesRepository::class);
 	}
 
 	/**
@@ -71,7 +73,15 @@ class PostController extends BaseController
      */
     public function edit($id)
     {
-        //
+		$item = $this->blogPostRepository->getEdit($id);
+		$categoriesList = $this->blogCategoriesRepository->getForComboBox();
+		$selectList = [];
+
+		foreach($categoriesList as $categoriesItem) {
+			$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
+		}
+
+		return view('blog.admin.posts.edit', compact('item','selectList'));
     }
 
     /**

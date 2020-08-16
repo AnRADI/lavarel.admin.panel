@@ -5,7 +5,7 @@
 		<div class="container">
 
 			<ul class="all-categories__links">
-				<li><a class="btn btn-primary" href="{{ route('blog.admin.categories.create') }}">Написать</a></li>
+				<li><a class="btn btn-primary" href="{{ route('blog.admin.posts.create') }}">Написать</a></li>
 			</ul>
 
 			<div class="all-categories__table decor-1">
@@ -25,7 +25,7 @@
 								<td>{{ $post->id }}</td>
 								<td>{{ $post->user->name }}</td>
 								<td>{{ $post->blog_category->title }}</td>
-								<td><a href="{{ route('blog.admin.categories.edit', $post->id) }}"> {{ $post->title }} </a></td>
+								<td><a href="{{ route('blog.admin.posts.edit', $post->id) }}"> {{ $post->title }} </a></td>
 								<td>{{ $post->published_at ? \Carbon\Carbon::parse($post->published_at)->format('d.M H:i') : '' }}</td>
 							</tr>
 						@endforeach
