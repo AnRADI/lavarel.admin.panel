@@ -1,16 +1,7 @@
 /*================== RESET ==================*/
-body {
-    line-height: 1.5;
-}
 
 ul {
     list-style: none;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-weight: normal;
-    font-size: 100%;
-    line-height: 1.2;
 }
 
 body, input, label, ul, p, h1, h2, h3, h4, h5, h6, figure {
@@ -31,23 +22,10 @@ a, span, label {
 
 button, input[type="button"] {
     cursor: pointer;
-    padding: 6px 12px;
 }
 
 button, input, select, textarea {
     outline: none;
-    background: white;
-    font: inherit;
-}
-
-input, select, textarea {
-    width: 100%;
-    padding: 6px 12px;
-    border: 1px solid #dee2e6;
-}
-
-input[type="checkbox"], input[type="radio"] {
-    width: auto;
 }
 
 :active, :focus {
@@ -60,10 +38,6 @@ input[type="checkbox"], input[type="radio"] {
 
 button, img {
     border: 0;
-}
-
-textarea {
-    resize: vertical;
 }
 
 select {
@@ -141,21 +115,9 @@ img {
     svg[class] {
         will-change: transform;
     }
-    body {
-        line-height: 1.45;
-    }
-    select {
-        text-indent: -2px;
-    }
 }
 
 /*================== PAGE ==================*/
-.decor-1 {
-    border: 1px solid #dee2e6;
-    background: #fff;
-    border-radius: 4px;
-}
-
 input, select, textarea {
     border-radius: 4px;
 }
@@ -189,31 +151,20 @@ input, select, textarea {
 }
 
 /*================== EDIT CATEGORY ==================*/
-
-.edit-category__left {
-    padding: 32px 16px;
+.edit-category .card {
+    margin-bottom: 20px;
 }
 
-.edit-category__left > div {
-    margin-top: 16px;
-}
-
-.edit-category__left div div {
-    position: relative;
-}
-
-.edit-category__left label {
+.edit-category label {
     margin-bottom: 8px;
 }
 
-.edit-category__left select {
-    position: relative;
-    height: 40px;
+.edit-category__left .tab-content {
+    margin-top: 16px;
 }
 
-.edit-category__left input[type="checkbox"] {
-    height: 13px;
-    margin-right: 4px;
+.edit-category__select {
+    position: relative;
 }
 
 .edit-category__left i {
@@ -224,32 +175,6 @@ input, select, textarea {
     transform: translateY(-50%);
 }
 
-.edit-category__save {
-    padding: 16px;
-}
-
-.edit-category__save input {
-    width: auto;
-}
-
-.edit-category__info {
-    margin: 20px 0;
-    padding: 16px 16px 32px;
-}
-
-.edit-category__status {
-    padding: 0 16px 32px 16px;
-}
-
-.edit-category__status > div {
-    margin-top: 16px;
-}
-
-.edit-category__status label {
-    display: block;
-    margin-bottom: 8px;
-}
-
 .edit-category__status input:disabled {
-    background-color: #e9ecef;
+    color: black;
 }

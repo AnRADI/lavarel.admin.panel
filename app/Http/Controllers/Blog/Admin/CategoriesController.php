@@ -41,16 +41,10 @@ class CategoriesController extends BaseController
      */
     public function create()
     {
-        $categoriesList = $this
+        $selectList = $this
 			->blogCategoriesRepository
-			->getForComboBox();
+			->getSelectList();
 
-		$selectList = [];
-
-
-		foreach($categoriesList as $categoriesItem) {
-			$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
-		}
 
         return view('blog.admin.categories.create', compact('selectList'));
     }
@@ -106,12 +100,8 @@ class CategoriesController extends BaseController
     public function edit($id, BlogCategoriesRepository $blogCategoriesRepository)
     {
         $item = $blogCategoriesRepository->getEdit($id);
-        $categoriesList = $blogCategoriesRepository->getForComboBox();
-        $selectList = [];
+        $selectList = $blogCategoriesRepository->getSelectList();
 
-        foreach($categoriesList as $categoriesItem) {
-        	$selectList[$categoriesItem->id] = $categoriesItem->id . '. ' . $categoriesItem->title;
-		}
 
         return view('blog.admin.categories.edit', compact('item','selectList'));
     }

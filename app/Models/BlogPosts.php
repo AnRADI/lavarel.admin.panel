@@ -9,12 +9,16 @@ class BlogPosts extends Model
 {
     use SoftDeletes;
 
+	protected $guarded = [
+		'_method',
+		'_token'
+	];
+
 	public function blog_category() {
 		return $this->belongsTo(BlogCategories::class);
 	}
 
 	public function user() {
-		//return $this->hasOne(User::class);
 		return $this->belongsTo(User::class);
 	}
 }

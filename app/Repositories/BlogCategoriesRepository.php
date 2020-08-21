@@ -15,15 +15,22 @@ class BlogCategoriesRepository extends CoreRepository {
 		return $this->startConditions()->find($id);
 	}
 
-	public function getForComboBox() {
+	public function getSelectList() {
 
-		$result = $this
+		$categoriesList = $this
 			->startConditions()
 			->selectRaw('*, CONCAT (id, ". ", title) AS id_title')
 			->toBase()
 			->get();
 
-		return $result;
+		$selectList = [];
+
+
+		foreach($categoriesList as $categoriesItem) {
+			$selectList[$categoriesItem->id] = $categoriesItem->id_title;
+		}
+
+		return $selectList;
 	}
 
 	public function getAllWidthPaginate($perPage = null) {

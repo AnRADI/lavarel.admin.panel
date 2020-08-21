@@ -25,7 +25,7 @@ $factory->define(BlogPosts::class, function (Faker $faker) {
         'title' => $title,
         'slug' => Str::slug($title),
         'excerpt' => $faker->text(rand(40, 100)),
-        'content_row' => $txt,
+        'article' => $txt,
         'content_html' => $txt,
         'is_published' => $isPublished,
         'published_at' => $isPublished ? $faker->dateTimeBetween('-2 months') : null,
