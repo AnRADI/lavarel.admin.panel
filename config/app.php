@@ -182,6 +182,7 @@ return [
          * My Service Providers...
          */
         App\Providers\MyTimeServiceProvider::class,
+		App\Providers\ObserverServiceProvider::class,
     ],
 
     /*

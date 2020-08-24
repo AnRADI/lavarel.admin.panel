@@ -59,12 +59,7 @@ class CategoriesController extends BaseController
     {
 		$data = $request->all();
 
-        if(empty($data['slug'])) {
-			$data['slug'] = Str::slug($data['title']);
-		}
-
         $item = BlogCategories::create($data);
-
 
 
         if($item) {

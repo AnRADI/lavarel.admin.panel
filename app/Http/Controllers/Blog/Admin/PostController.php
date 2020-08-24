@@ -85,6 +85,7 @@ class PostController extends BaseController
 			->getSelectList();
 
 
+
 		return view('blog.admin.posts.edit', compact('row','selectList'));
     }
 
@@ -100,17 +101,15 @@ class PostController extends BaseController
 			->blogPostRepository
 			->getRow($id);
 
+
+        if(empty($row)) {
+        	return back()
+				->withErrors(['msg' => "Ошибка записи [{$id}]"])
+				->withInput();
+		}
+
+
 		$data = $request->all();
-
-
-		if(empty($data['slug'])) {
-			$data['slug'] = Str::slug($data['title']);
-		}
-
-		if(empty($row->published_at) && $data['is_published']) {
-			$data['published_at'] = Carbon::now();
-		}
-
 
 		$result = $row->update($data);
 
