@@ -3,10 +3,15 @@
 namespace App\Http\Controllers\Blog\Admin;
 
 use Carbon\Carbon;
-use Illuminate\Http\Request;
+
 use App\Http\Requests\BlogPostUpdateRequest;
+use App\Http\Requests\BlogPostStoreRequest;
+
 use App\Repositories\BlogPostRepository;
 use App\Repositories\BlogCategoriesRepository;
+
+use App\Models\BlogPosts;
+
 use Illuminate\Support\Str;
 
 class PostController extends BaseController
@@ -30,8 +35,9 @@ class PostController extends BaseController
      */
     public function index()
     {
-
     	$paginator = $this->blogPostRepository->getAllWidthPaginate();
+    	$gg = $this->blogPostRepository->getRowIndex();
+
 
         return view('blog.admin.posts.index', compact('paginator'));
     }
@@ -43,7 +49,12 @@ class PostController extends BaseController
      */
     public function create()
     {
-        //
+		$selectList = $this
+			->blogCategoriesRepository
+			->getSelectList();
+
+
+		return view('blog.admin.posts.create', compact('selectList'));
     }
 
     /**
@@ -52,9 +63,22 @@ class PostController extends BaseController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(BlogPostStoreRequest $request)
     {
-        //
+		$data = $request->all();
+
+		$item = BlogPosts::create($data);
+
+
+		if($item) {
+			return redirect()
+				->route('blog.admin.posts.edit', $item->id)
+				->with(['success' => 'Успешно сохранено']);
+		} else {
+			return back()
+				->withErrors(['msg' => 'Ошибка сохранения'])
+				->withInput();
+		}
     }
 
     /**
@@ -134,6 +158,32 @@ class PostController extends BaseController
      */
     public function destroy($id)
     {
+		$result = BlogPosts::destroy($id);
 
+		//$result = BlogPosts::find($id)->forceDelete();
+
+		if($result) {
+			return redirect()
+				->route('blog.admin.posts.index')
+				->with(['success' => "Запись id[{$id}] удалена ", 'restore' => $id]);
+		} else {
+			return back()
+				->withErrors(['msg' => 'Ошибка удаления']);
+		}
     }
+
+    public function restore($id)
+	{
+    	$row = $this->blogPostRepository->getDeletedRow($id);
+
+    	$result = $row->restore();
+
+		if($result) {
+			return back()
+				->with(['success' => "Запись id[{$id}] успешно восстановлена"]);
+		} else {
+			return back()
+				->withErrors(['msg' => "Ошибка восстановления id[{$id}]"]);
+		}
+	}
 }

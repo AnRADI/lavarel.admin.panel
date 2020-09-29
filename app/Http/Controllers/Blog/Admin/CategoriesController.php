@@ -31,6 +31,7 @@ class CategoriesController extends BaseController
 			->blogCategoriesRepository
 			->getAllWidthPaginate(5);
 
+
         return view('blog.admin.categories.index', compact('paginator'));
     }
 

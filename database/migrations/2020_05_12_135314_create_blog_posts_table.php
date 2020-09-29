@@ -15,12 +15,12 @@ class CreateBlogPostsTable extends Migration
     {
         Schema::create('blog_posts', function (Blueprint $table) {
 
-            $table->id();
-            $table->bigInteger('blog_category_id')->unsigned();
-            $table->bigInteger('user_id')->unsigned();
+			$table->increments('id');
+            $table->integer('blog_category_id')->unsigned();
+            $table->integer('user_id')->unsigned();
 
             $table->string('slug')->unique();
-            $table->string('title');
+            $table->string('title')->unique();
 
             $table->text('excerpt')->nullable();
 

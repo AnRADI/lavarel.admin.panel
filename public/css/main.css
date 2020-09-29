@@ -129,16 +129,19 @@ input, select, textarea {
 
 .all-categories__links {
     display: flex;
-    margin-left: 10px;
 }
 
 .all-categories__links a {
     color: white;
 }
 
+.all-categories__restore {
+    margin-bottom: 16px;
+}
+
 .all-categories__table {
     margin-top: 8px;
-    padding: 16px 16px 32px 16px;
+    padding: 16px 0 32px;
 }
 
 .all-categories__table th {

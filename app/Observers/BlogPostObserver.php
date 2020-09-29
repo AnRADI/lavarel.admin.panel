@@ -19,6 +19,14 @@ class BlogPostObserver
         //
     }
 
+	public function creating(BlogPosts $blogPosts)
+	{
+		$this->setUser($blogPosts);
+		$this->setHtml($blogPosts);
+		$this->setPublishedAt($blogPosts);
+		$this->setSlug($blogPosts);
+	}
+
     /**
      * Handle the blog posts "updated" event.
      *
@@ -28,14 +36,27 @@ class BlogPostObserver
     public function updating(BlogPosts $blogPosts)
     {
 		$this->setPublishedAt($blogPosts);
-
 		$this->setSlug($blogPosts);
     }
+
+	protected function setUser(BlogPosts $blogPosts)
+	{
+		$blogPosts->user_id = auth()->id() ?? BlogPosts::UNKNOWN_USER;
+	}
+
+	protected function setHtml(BlogPosts $blogPosts)
+	{
+		if($blogPosts->isDirty('article')) {
+			$blogPosts->content_html = $blogPosts->article;
+		}
+	}
 
     protected function setPublishedAt(BlogPosts $blogPosts)
 	{
     	if(empty($blogPosts->published_at) && $blogPosts->is_published) {
+
     		$blogPosts->published_at = Carbon::now();
+    		dd($blogPosts->published_at);
 		}
 	}
 
@@ -46,6 +67,11 @@ class BlogPostObserver
 		}
 	}
 
+
+	public function deleting(BlogPosts $blogPosts)
+	{
+		
+	}
     /**
      * Handle the blog posts "deleted" event.
      *
@@ -54,9 +80,14 @@ class BlogPostObserver
      */
     public function deleted(BlogPosts $blogPosts)
     {
-        //
+
     }
 
+
+	public function restoring(BlogPosts $blogPosts)
+	{
+		//dd(__METHOD__, request()->all(), $blogPosts->id);
+	}
     /**
      * Handle the blog posts "restored" event.
      *
@@ -68,14 +99,15 @@ class BlogPostObserver
         //
     }
 
-    /**
-     * Handle the blog posts "force deleted" event.
-     *
-     * @param  \App\Models\BlogPosts  $blogPosts
-     * @return void
-     */
+
+	public function forceDeleting(BlogPosts $blogPosts)
+	{
+
+	}
+
+
     public function forceDeleted(BlogPosts $blogPosts)
     {
-        //
+
     }
 }

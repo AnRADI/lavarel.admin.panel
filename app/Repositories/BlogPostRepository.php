@@ -29,25 +29,47 @@ class BlogPostRepository extends CoreRepository {
 			->select($columns)
 			->orderBy('id', 'DESC')
 			->with([
-				//'blog_category:id,title',
-				'blog_category' => function($query)
-				{
-					$query
-						->select(['id', 'title']);
-				},
+				'blogCategory:id,title',
 				'user:id,name',
 			])
-			//->toBase()
 			->paginate(25);
 
-
 		return $result;
+	}
+
+	public function getRowIndex() {
+
+		$result = $this
+			->startConditions()
+			->where('id', 3)
+			//->toBase()
+			//->get();
+			//->find(1);
+			//->limit(2)
+			->get();
+			//->first();
+			//->all();
+
+		$time = \Carbon\Carbon::now();
+		//dd(__METHOD__, $result);
+
+		return $time;
 	}
 
 	public function getRow($id) {
 
 		$result = $this
 			->startConditions()
+			->find($id);
+
+		return $result;
+	}
+
+	public function getDeletedRow($id) {
+
+		$result = $this
+			->startConditions()
+			->withTrashed()
 			->find($id);
 
 		return $result;

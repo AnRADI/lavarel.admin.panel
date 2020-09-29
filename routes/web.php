@@ -1,22 +1,24 @@
 <?php
 
+// ====== AUTH =======
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-// ====== blog =======
+// ====== BLOG =======
 
 $blogRoutes = [
     'namespace' => 'Blog',
     'prefix' => 'blog',
 ];
 
-
 // posts
-
-Route::group($blogRoutes, function(){
-    Route::resource('posts', 'PostsController')->names('blog.posts');
+Route::group($blogRoutes, function()
+{
+    Route::resource('posts', 'PostsController')
+		->names('blog.posts');
 });
 
 
@@ -27,19 +29,41 @@ $routes = [
     'prefix' => 'blog/admin',
 ];
 
+
 Route::group($routes, function()
 {
-	// categories
+
+	// CATEGORIES
     $methods = ['index', 'edit', 'update', 'create', 'store',];
 
     Route::resource('categories', 'CategoriesController')
 		->only($methods)
         ->names('blog.admin.categories');
 
-    // posts
+
+    // POSTS
 	$methods = ['index', 'edit', 'update', 'create', 'store', 'destroy',];
 
 	Route::resource('posts', 'PostController')
 		->only($methods)
 		->names('blog.admin.posts');
+
+
+	Route::patch('posts/restore/{post}', 'PostController@restore')
+		->name('blog.admin.posts.restore');
+});
+
+
+// ====== DIGGING DEEPER ======
+
+$paths = [
+	'prefix' => 'digging_deeper'
+];
+
+Route::group($paths, function ()
+{
+
+	// COLLECTIONS
+	Route::get('collections', 'DiggingDeeperController@collections')
+		->name('digging_deeper.collections');
 });
